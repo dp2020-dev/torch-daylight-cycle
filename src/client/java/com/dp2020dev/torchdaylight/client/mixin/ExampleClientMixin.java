@@ -1,4 +1,4 @@
-package com.example.client.mixin;
+package com.dp2020dev.torchdaylight.client.mixin;
 
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,4 +1,4 @@
-package com.example;
+package com.dp2020dev.torchdaylight;
 
 import net.fabricmc.api.ModInitializer;
 
@@ -7,7 +7,7 @@ import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ExampleMod implements ModInitializer {
+public class TorchDaylight implements ModInitializer {
 	public static final String MOD_ID = "modid";
 
 	// This logger is used to write text to the console and the log file.

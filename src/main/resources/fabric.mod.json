@@ -1,31 +1,31 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
+    "id": "torchdaylight",
 	"version": "${version}",
-	"name": "Example Mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
-	"authors": [
-		"Me!"
-	],
+    "name": "Torch Daylight Cycle",
+    "description": "Dims placed torches to a low smoulder during the day and restores a full flame at night.",
+    "authors": [
+      "dp2020-dev"
+    ],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+    "icon": "assets/torchdaylight/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.ExampleMod"
+          "com.dp2020dev.torchdaylight.TorchDaylight"
 		],
 		"client": [
-			"com.example.client.ExampleModClient"
+          "com.dp2020dev.torchdaylight.client.TorchDaylightClient"
 		]
 	},
 	"mixins": [
-		"modid.mixins.json",
+      "torchdaylight.mixins.json",
 		{
-			"config": "modid.client.mixins.json",
+			"config": "torchdaylight.client.mixins.json",
 			"environment": "client"
 		}
 	],
