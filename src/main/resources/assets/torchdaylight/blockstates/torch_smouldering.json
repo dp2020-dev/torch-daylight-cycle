@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "torchdaylight:block/torch_smouldering" }
+  }
+}
