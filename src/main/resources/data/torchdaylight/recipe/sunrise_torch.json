@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CS"
+  ],
+  "key": {
+    "C": "#minecraft:coals",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "torchdaylight:torch_bright",
+    "count": 4
+  }
+}
