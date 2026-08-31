@@ -6,6 +6,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.Registry;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -15,8 +17,8 @@ import java.util.function.Function;
 
 public class ModBlocks {
 
-    // Bright torch — full flame, light level 14 (the nighttime / dark-area state)
-    public static final Block TORCH_BRIGHT = register(
+    // Bright torch — full flame, light level 14. This one HAS an inventory item (craftable "Sunrise Torch").
+    public static final Block TORCH_BRIGHT = registerWithItem(
             "torch_bright",
             p -> new DaylightTorchBlock(ParticleTypes.FLAME, p),
             BlockBehaviour.Properties.of()
@@ -28,20 +30,21 @@ public class ModBlocks {
                     .randomTicks()
     );
 
-    // Smouldering torch — low ember, light level 7 (the daylight state)
-    public static final Block TORCH_SMOULDERING = register(
+    // "Off" torch — unlit look, no light. The daytime state.
+    public static final Block TORCH_SMOULDERING = registerBlockOnly(
             "torch_smouldering",
-            p -> new DaylightTorchBlock(ParticleTypes.SMOKE, p),
+            p -> new DaylightTorchBlock(ParticleTypes.SMALL_FLAME, p),
             BlockBehaviour.Properties.of()
                     .noCollision()
                     .instabreak()
-                    .lightLevel(state -> 7)
+                    .lightLevel(state -> 0)
                     .sound(SoundType.WOOD)
                     .pushReaction(PushReaction.DESTROY)
                     .randomTicks()
     );
 
-    private static Block register(
+    // Registers a block WITHOUT an inventory item.
+    private static Block registerBlockOnly(
             String name,
             Function<BlockBehaviour.Properties, Block> factory,
             BlockBehaviour.Properties properties
@@ -52,6 +55,26 @@ public class ModBlocks {
         );
         Block block = factory.apply(properties.setId(key));
         return Registry.register(BuiltInRegistries.BLOCK, key, block);
+    }
+
+    // Registers a block AND a matching BlockItem for the inventory.
+    private static Block registerWithItem(
+            String name,
+            Function<BlockBehaviour.Properties, Block> factory,
+            BlockBehaviour.Properties properties
+    ) {
+        // Register the block first (reuse the block-only path).
+        Block block = registerBlockOnly(name, factory, properties);
+
+        // Now register a matching item.
+        ResourceKey<Item> itemKey = ResourceKey.create(
+                Registries.ITEM,
+                Identifier.fromNamespaceAndPath(TorchDaylight.MOD_ID, name)
+        );
+        BlockItem blockItem = new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(itemKey));
+        Registry.register(BuiltInRegistries.ITEM, itemKey, blockItem);
+
+        return block;
     }
 
     public static void initialize() {
