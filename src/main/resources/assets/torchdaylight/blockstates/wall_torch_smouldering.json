@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=east":  { "model": "torchdaylight:block/wall_torch_smouldering" },
+    "facing=south": { "model": "torchdaylight:block/wall_torch_smouldering", "y": 90 },
+    "facing=west":  { "model": "torchdaylight:block/wall_torch_smouldering", "y": 180 },
+    "facing=north": { "model": "torchdaylight:block/wall_torch_smouldering", "y": 270 }
+  }
+}

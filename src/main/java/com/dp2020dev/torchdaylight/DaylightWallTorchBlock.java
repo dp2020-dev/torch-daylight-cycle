@@ -7,16 +7,16 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.TorchBlock;
+import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class DaylightTorchBlock extends TorchBlock {
+public class DaylightWallTorchBlock extends WallTorchBlock {
 
     private static final int SKYLIGHT_THRESHOLD = 8;
     private static final int CHECK_INTERVAL = 20;
 
-    public DaylightTorchBlock(SimpleParticleType flameParticle, BlockBehaviour.Properties properties) {
+    public DaylightWallTorchBlock(SimpleParticleType flameParticle, BlockBehaviour.Properties properties) {
         super(flameParticle, properties);
     }
 
@@ -32,13 +32,13 @@ public class DaylightTorchBlock extends TorchBlock {
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         int skyLight = level.getBrightness(LightLayer.SKY, pos);
         boolean shouldDim = level.isBrightOutside() && skyLight >= SKYLIGHT_THRESHOLD;
-        boolean isBright = this == ModBlocks.TORCH_BRIGHT;
+        boolean isBright = this == ModBlocks.WALL_TORCH_BRIGHT;
 
         if (isBright && shouldDim) {
-            swapTo(level, pos, ModBlocks.TORCH_SMOULDERING);
+            swapTo(level, pos, state, ModBlocks.WALL_TORCH_SMOULDERING);
             return;
         } else if (!isBright && !shouldDim) {
-            swapTo(level, pos, ModBlocks.TORCH_BRIGHT);
+            swapTo(level, pos, state, ModBlocks.WALL_TORCH_BRIGHT);
             return;
         }
 
@@ -46,7 +46,9 @@ public class DaylightTorchBlock extends TorchBlock {
         level.scheduleTick(pos, this, CHECK_INTERVAL + jitter);
     }
 
-    private void swapTo(ServerLevel level, BlockPos pos, Block target) {
-        level.setBlockAndUpdate(pos, target.defaultBlockState());
+    private void swapTo(ServerLevel level, BlockPos pos, BlockState oldState, Block target) {
+        BlockState newState = target.defaultBlockState();
+        newState = newState.setValue(WallTorchBlock.FACING, oldState.getValue(WallTorchBlock.FACING));
+        level.setBlockAndUpdate(pos, newState);
     }
 }
