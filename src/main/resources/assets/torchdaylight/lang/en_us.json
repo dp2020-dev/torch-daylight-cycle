@@ -1,4 +1,6 @@
 {
-  "block.torchdaylight.torch_bright": "Sunrise Torch",
-  "block.torchdaylight.torch_smouldering": "Sunrise Torch"
+  "block.torchdaylight.torch_bright": "Sunset Torch",
+  "block.torchdaylight.torch_smouldering": "Sunset Torch",
+  "block.torchdaylight.wall_torch_bright": "Sunset Torch",
+  "block.torchdaylight.wall_torch_smouldering": "Sunset Torch"
 }
