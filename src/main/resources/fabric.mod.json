@@ -1,38 +1,39 @@
 {
-	"schemaVersion": 1,
-    "id": "torchdaylight",
-	"version": "${version}",
-    "name": "Torch Daylight Cycle",
-    "description": "Dims placed torches to a low smoulder during the day and restores a full flame at night.",
-    "authors": [
-      "dp2020-dev"
+  "schemaVersion": 1,
+  "id": "torchdaylight",
+  "version": "${version}",
+  "name": "Sunset Torch",
+  "description": "Torches that respond to daylight: they burn down to a dim, ashen ember in daytime and sky-lit areas, then blaze back to full flame at night, in dark interiors, and during storms. Reliable enough to keep mobs at bay. Works on floors and walls, craftable from the start.",
+  "authors": [
+    "dp2020-dev"
+  ],
+  "contact": {
+    "homepage": "https://github.com/dp2020-dev/torch-daylight-cycle",
+    "sources": "https://github.com/dp2020-dev/torch-daylight-cycle",
+    "issues": "https://github.com/dp2020-dev/torch-daylight-cycle/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/torchdaylight/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.dp2020dev.torchdaylight.TorchDaylight"
     ],
-	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
-	},
-	"license": "CC0-1.0",
-    "icon": "assets/torchdaylight/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-          "com.dp2020dev.torchdaylight.TorchDaylight"
-		],
-		"client": [
-          "com.dp2020dev.torchdaylight.client.TorchDaylightClient"
-		]
-	},
-	"mixins": [
-      "torchdaylight.mixins.json",
-		{
-			"config": "torchdaylight.client.mixins.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.19.3",
-		"minecraft": "~26.2",
-		"java": ">=25",
-		"fabric-api": "*"
-	}
+    "client": [
+      "com.dp2020dev.torchdaylight.client.TorchDaylightClient"
+    ]
+  },
+  "mixins": [
+    "torchdaylight.mixins.json",
+    {
+      "config": "torchdaylight.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
 }
