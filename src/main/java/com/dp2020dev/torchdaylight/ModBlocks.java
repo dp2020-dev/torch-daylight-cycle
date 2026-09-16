@@ -29,7 +29,7 @@ public class ModBlocks {
                     .instabreak()
                     .lightLevel(state -> 14)
                     .sound(SoundType.WOOD)
-                    .pushReaction(PushReaction.DESTROY)
+                    .pushReaction(PushReaction.PUSH)
     );
 
     // "Off" floor torch — unlit look, no light. The daytime state.
@@ -41,7 +41,7 @@ public class ModBlocks {
                     .instabreak()
                     .lightLevel(state -> 0)
                     .sound(SoundType.WOOD)
-                    .pushReaction(PushReaction.DESTROY)
+                    .pushReaction(PushReaction.PUSH)
     );
 
     // --- Wall torches ---
@@ -54,7 +54,7 @@ public class ModBlocks {
                     .instabreak()
                     .lightLevel(state -> 14)
                     .sound(SoundType.WOOD)
-                    .pushReaction(PushReaction.DESTROY)
+                    .pushReaction(PushReaction.PUSH)
     );
 
     public static final Block WALL_TORCH_SMOULDERING = registerBlockOnly(
@@ -65,7 +65,7 @@ public class ModBlocks {
                     .instabreak()
                     .lightLevel(state -> 0)
                     .sound(SoundType.WOOD)
-                    .pushReaction(PushReaction.DESTROY)
+                    .pushReaction(PushReaction.PUSH)
     );
 
     // --- The Sunrise Torch item ---
