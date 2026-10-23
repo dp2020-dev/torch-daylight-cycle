@@ -1,0 +1,171 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:block": {
+    "description": {
+      "identifier": "sunsettorch:sunset_torch",
+      "menu_category": {
+        "category": "construction"
+      },
+      "states": {
+        "sunsettorch:daylight": [
+          false,
+          true
+        ],
+        "sunsettorch:wall": [
+          "none",
+          "north",
+          "south",
+          "east",
+          "west"
+        ]
+      },
+      "traits": {
+        "minecraft:placement_position": {
+          "enabled_states": [
+            "minecraft:block_face"
+          ]
+        }
+      }
+    },
+    "components": {
+      "minecraft:geometry": "geometry.sunset_torch",
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "torch_on",
+          "render_method": "alpha_test",
+          "ambient_occlusion": false,
+          "face_dimming": false
+        }
+      },
+      "minecraft:light_emission": 14,
+      "minecraft:collision_box": false,
+      "minecraft:selection_box": {
+        "origin": [
+          -2,
+          0,
+          -2
+        ],
+        "size": [
+          4,
+          10,
+          4
+        ]
+      },
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 0
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 0
+      },
+      "minecraft:placement_filter": {
+        "conditions": [
+          {
+            "allowed_faces": [
+              "up",
+              "north",
+              "south",
+              "east",
+              "west"
+            ]
+          }
+        ]
+      },
+      "minecraft:tick": {
+        "interval_range": [
+          20,
+          24
+        ],
+        "looping": true
+      },
+      "sunsettorch:daylight_swap": {}
+    },
+    "permutations": [
+      {
+        "condition": "q.block_state('sunsettorch:daylight') == true",
+        "components": {
+          "minecraft:light_emission": 0,
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "sunset_torch_smouldering",
+              "render_method": "alpha_test",
+              "ambient_occlusion": false,
+              "face_dimming": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('sunsettorch:wall') == 'north'",
+        "components": {
+          "minecraft:geometry": "geometry.sunset_wall_torch_north",
+          "minecraft:selection_box": {
+            "origin": [
+              -3,
+              2,
+              -8
+            ],
+            "size": [
+              6,
+              12,
+              6
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('sunsettorch:wall') == 'south'",
+        "components": {
+          "minecraft:geometry": "geometry.sunset_wall_torch_south",
+          "minecraft:selection_box": {
+            "origin": [
+              -3,
+              2,
+              2
+            ],
+            "size": [
+              6,
+              12,
+              6
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('sunsettorch:wall') == 'east'",
+        "components": {
+          "minecraft:geometry": "geometry.sunset_wall_torch_east",
+          "minecraft:selection_box": {
+            "origin": [
+              -8,
+              2,
+              -3
+            ],
+            "size": [
+              6,
+              12,
+              6
+            ]
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('sunsettorch:wall') == 'west'",
+        "components": {
+          "minecraft:geometry": "geometry.sunset_wall_torch_west",
+          "minecraft:selection_box": {
+            "origin": [
+              2,
+              2,
+              -3
+            ],
+            "size": [
+              6,
+              12,
+              6
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

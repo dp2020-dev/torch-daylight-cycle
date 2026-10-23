@@ -1,0 +1,54 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Sunset Torch (Behaviour Pack)",
+    "description": "A torch that smoulders in daylight and burns bright at night.",
+    "uuid": "aab036ba-bb58-4aa9-a3ba-d4964d3d1ad0",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      21,
+      90
+    ]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "2fd0423e-da7f-4acc-abfa-8511497ec18d",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "58c79e28-f2d3-42a4-bcec-e6b1c0cb3d76",
+      "version": [
+        1,
+        0,
+        0
+      ],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "edc5a7b3-3e43-43e9-a1b0-f25a21d9c3cb",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.0.0"
+    }
+  ]
+}

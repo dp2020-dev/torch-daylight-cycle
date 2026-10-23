@@ -1,0 +1,13 @@
+{
+  "resource_pack_name": "sunsettorch",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "sunset_torch_smouldering": {
+      "textures": [
+        "textures/blocks/sunset_torch_smouldering"
+      ]
+    }
+  }
+}

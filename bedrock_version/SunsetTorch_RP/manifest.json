@@ -1,0 +1,29 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Sunset Torch (Resource Pack)",
+    "description": "Textures and model for the Sunset Torch.",
+    "uuid": "edc5a7b3-3e43-43e9-a1b0-f25a21d9c3cb",
+    "version": [
+      1,
+      0,
+      0
+    ],
+    "min_engine_version": [
+      1,
+      21,
+      90
+    ]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "2c4693c6-260e-42b7-b6b8-b6275b36752f",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+  ]
+}
