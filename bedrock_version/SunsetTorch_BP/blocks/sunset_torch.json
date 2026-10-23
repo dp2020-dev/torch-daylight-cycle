@@ -77,7 +77,8 @@
         ],
         "looping": true
       },
-      "sunsettorch:daylight_swap": {}
+      "sunsettorch:daylight_swap": {},
+      "minecraft:loot": "loot_tables/blocks/sunset_torch.json"
     },
     "permutations": [
       {
