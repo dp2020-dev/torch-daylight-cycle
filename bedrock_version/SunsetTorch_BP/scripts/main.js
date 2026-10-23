@@ -1,4 +1,4 @@
-import { system, world } from "@minecraft/server";
+import { system, world, ItemStack } from "@minecraft/server";
 
 const BLOCK_ID = "sunsettorch:sunset_torch";
 const STATE = "sunsettorch:daylight";
@@ -68,6 +68,24 @@ function detectWall(block) {
   else if (solid.includes(face)) wall = face;
   else wall = solid[0];
   return { wall, face, solid };
+}
+
+// Vanilla torches can't be mounted on another torch, so undo placement if the
+// supporting block (below, or the wall side) is a torch, and give the item back.
+function rejectOnTorch(block) {
+  try {
+    const { wall } = detectWall(block);
+    const d = SIDES[wall];
+    const support = d ? block.offset({ x: d.x, y: 0, z: d.z }) : block.below();
+    if (!support || !/torch/.test(support.typeId)) return false;
+    block.dimension.spawnItem(new ItemStack(BLOCK_ID, 1), block.center());
+    block.setType("minecraft:air");
+    debug(`rejected: supported by ${support.typeId}`);
+    return true;
+  } catch (e) {
+    debug(`rejectOnTorch failed: ${e}`);
+    return false;
+  }
 }
 
 function place(block) {
@@ -178,6 +196,7 @@ system.runInterval(() => {
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
   blockComponentRegistry.registerCustomComponent("sunsettorch:daylight_swap", {
     onPlace(event) {
+      if (rejectOnTorch(event.block)) return;
       place(event.block);
       track(event.block);
     },
